@@ -3,6 +3,39 @@
 #include<stdlib.h>
 #include<time.h>
 
+void swap(int* x, int* y) {
+    //解引用操作~ （接近访问）
+    //x = &a
+    //此处的 *x 和 a 是等价的
+    //y = &b
+    //此处的 *y 和 b 是等价的
+    int tmp = *x;
+    *x = *y;
+    *y = tmp;
+}
+int main() {
+    int a = 10;
+    int b = 20;
+    swap(&a, &b);
+    printf("a = %d,b = %d\n", a, b);
+    return 0;
+}
+
+
+//int getMax(int x, int y) {
+//    if (x > y) {
+//        return x;
+//    }
+//    else {
+//        return y;
+//    }
+//}
+//int main() {
+//    int ret = getMax(10, 20);
+//    printf("ret = %d\n", ret);
+//    return 0;
+//}
+// 
 //int main() {
 //    int  i = 0;
 //    int arr[11] = { 0 };
