@@ -3,23 +3,23 @@
 #include<stdlib.h>
 #include<time.h>
 
-int main() {
-    int  i = 0;
-    int arr[11] = { 0 };
-    int Max = 0;
-    printf("请任意输入10个整数：");
-    for (i = 1; i < 11; i++) {
-        scanf("%d", &arr[i]);
-    }
-    Max = arr[1];
-    for (i = 2; i < 11; i++) {
-        if (arr[i] > Max) {
-            Max = arr[i];
-        }
-    }
-    printf("最大值为%d", Max);
-    return 0;
-}
+//int main() {
+//    int  i = 0;
+//    int arr[11] = { 0 };
+//    int Max = 0;
+//    printf("请任意输入10个整数：");
+//    for (i = 1; i < 11; i++) {
+//        scanf("%d", &arr[i]);
+//    }
+//    Max = arr[1];
+//    for (i = 2; i < 11; i++) {
+//        if (arr[i] > Max) {
+//            Max = arr[i];
+//        }
+//    }
+//    printf("最大值为%d", Max);
+//    return 0;
+//}
 
 //int main(){
 //    double sum = 0; //因为是小数所以要使用double
