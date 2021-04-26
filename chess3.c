@@ -1,6 +1,7 @@
 #define  _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#include<time.h>
 #define Max_row 3
 #define Max_col 3
 
@@ -10,6 +11,7 @@ void init(char chess3[Max_row][Max_col]) {
             chess3[row][col] = ' ';
         }
     }
+    srand((unsigned int)time(0));
 }
 
 void print(char chess3[Max_row][Max_col]) {
@@ -115,6 +117,7 @@ int main() {
     init(chess3);
     char winner = ' ';
     while (1) {
+        system("cls");
         //2.´òÓ¡ÆåÅÌ.
         print(chess3);
         //3.Íæ¼ÒÂä×Ó.
@@ -132,6 +135,7 @@ int main() {
             break;
         }
     }
+    print(chess3);
     if (winner == 'x') {
         printf("you win!\n");
     }
