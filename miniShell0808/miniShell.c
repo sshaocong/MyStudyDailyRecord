@@ -18,15 +18,15 @@ void showpwd()
 	char* p3 =strtok(NULL,"");
 	if(p3 == NULL && p2 != NULL)
 	{
-		printf("linux@miniShell:~$ ");
+		printf("Mylinux@miniShell:~$ ");
 	}
 	else if(p2 == NULL && p3 == NULL)
 	{
-		printf("linux@miniShell:%s$ ",p1);
+		printf("Mylinux@miniShell:%s$ ",p1);
 	}
 	else
 	{
-		printf("linux@miniShell:~%s$ ",p3);
+		printf("Mylinux@miniShell:~%s$ ",p3);
 	}
 }
 
@@ -117,10 +117,18 @@ void lsDir(char* p1)
 		struct dirent* info = readdir(dir);
 		if(NULL == info)
 		{
-			perror("readdir");
+		//	perror("readdir");
 			break;
 		}
-		printf("%s\n",info->d_name);
+		printf("%11s  ",info->d_name);
+		if(DT_DIR == info->d_type)
+		{
+			printf("目录文件\n");
+		}
+		else
+		{
+			printf("一般文件\n");
+		}
 	}
 	chdir(dest);
 	closedir(dir);
@@ -247,11 +255,57 @@ void llFile(char* p1)
 				,buf.st_nlink,pw->pw_name,gr->gr_name,buf.st_size);
 		time_t  t = buf.st_mtime;
 		struct tm* tme = localtime(&t);
-		printf("%2d %2d %2d:%02d",tme->tm_mon + 1,tme->tm_mday
+		printf("%2d月 %2d %2d:%02d",tme->tm_mon + 1,tme->tm_mday
 				,tme->tm_hour,tme->tm_min);
 		printf(" %s\n",info->d_name);
 
 	}
 	chdir(dest);
 	closedir(dir);
+}
+
+void lnsFile(char* p2, char* p3)
+{
+	int ret = symlink(p2,p3);
+	if(ret == -1)
+	{
+		perror("symlink");
+		return ;
+	}
+}
+
+void lnYFile(char* p1, char* p2)
+{
+	int ret = link(p1,p2);
+	if(ret == -1)
+	{
+		perror("link");
+		return ;
+	}
+}
+
+void rmFile(char* p1)
+{
+	int ret = remove(p1);
+	if(ret == -1)
+	{
+		perror("remove");
+		return ;
+	}
+}
+
+void touchFile(char* p1)
+{
+	FILE* fp = fopen(p1,"w");
+	if(fp == NULL)
+	{
+		perror("touch");
+	}
+	return ;
+}
+
+void mvFile(char* p1,char* p2)
+{
+	cpFile(p1,p2);
+	rmFile(p1);
 }
